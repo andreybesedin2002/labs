@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Формочка</h1>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label for="theme">Тема</label>
+            <input class="form-control" type="text" name="theme" id="theme" value="{{ request.form.get('theme', '') }}">
+        </div>
+        <div class="mb-3">
+            <label for="sms">Текст</label>
+            <textarea class="form-control" name="sms" id="sms">{{ request.form.get('sms', '') }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Подтвердить</button>
+    </form>
+
+    {% if request.method == 'POST' %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Значение</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for name, value in request.form.items() %}
+                    <tr>
+                        <th>{{ name }}</th>
+                        <th>{{ value }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

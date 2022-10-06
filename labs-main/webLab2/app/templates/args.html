@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Параметры URL</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Значение</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for name, value in request.args.items() %}
+                <tr>
+                    <th>{{ name }}</th>
+                    <th>{{ value }}</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
